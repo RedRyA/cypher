@@ -1,0 +1,11 @@
+
+
+hello all
+xneed mee
+('a', 'm')
+Phrase: hPhrase: ePhrase: lPhrase: lPhrase: oPhrase:  Phrase: tPhrase: hPhrase: ePhrase: rPhrase: ePhrase: !Phrase: !
+Jumble: jJumble: fJumble: qJumble: qJumble: bJumble:  Jumble: yJumble: jJumble: fJumble: mJumble: fJumble: !Jumble: !
+Key: ('o', 'b')
+Phrase: mehhhh!!!
+Jumble: qtaaaa!!!
+Key: ('m', 'q')
