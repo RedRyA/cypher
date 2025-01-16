@@ -12,3 +12,6 @@ Key: ('m', 'q')
 Phrase: hello
 Jumble: zqxxu
 Key: ('e', 'q')
+Phrase: hello there, partner!
+Jumble: ziggb uziyi, heyuviy!
+Key: ('t', 'u')
