@@ -4,11 +4,20 @@ import random
 LETTER = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 codex={}
 mixPhrase=[]
+decodePhrase = []
 
 # START
 def start():
+    select=input("Encode or Decode? \n").lower()
+    
     phrase =input("Please enter a phrase. \n").lower()
-    encode(phrase)
+
+    if select=='encode':
+        encode(phrase)
+    elif select =='decode':
+        decode(phrase)
+    else:
+        start() 
 
 # This function encrypts the phrase
 # ENCODE
@@ -34,7 +43,32 @@ def encode(phrase):
     print("Your hint is "+ str(key))     
     print(' '.join(mixPhrase))
  
+ # DECODE
+def change():
+        old=input("Letter to change: \n")
+        new=input(f'Change {old} to ? \n')
+        codex[old]=new
+        print('Codex ',codex)
+        print('Original: ',mixPhrase)
+        for j in range(len(decodePhrase)):
+            if decodePhrase[j] == old:
+                decodePhrase[j] = new
+                
+            
+        print('New: ',decodePhrase)
+        change()
+
+def  decode(phrase):
+    for i in phrase:
+        mixPhrase.append(i)
+        decodePhrase.append(i)
+    choice = input('Change or revert \n').lower()
+    if choice == 'change':
+        change()
     
+   
+
+        
 # The "key" parameter right now is the hint a user gets and may be used later for a decode function.
 # WRITE
 def write(key,phrase):
