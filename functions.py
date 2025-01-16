@@ -8,15 +8,9 @@ mixPhrase=[]
 # START
 def start():
     phrase =input("Please enter a phrase. \n").lower()
-    select=input("Encode or Decode ").lower()
-    print('\n')
-    if select=="encode":
-        encode(phrase)
-    elif select == 'decode':
-        decode(phrase)
-    else:
-        print('Please try again ')
-        start()
+    encode(phrase)
+
+# This function encrypts the phrase
 # ENCODE
 def encode(phrase):
     for i in phrase:
@@ -41,16 +35,7 @@ def encode(phrase):
     print(' '.join(mixPhrase))
  
     
-    
-# DECODE
-def decode(cypher,key):
-    pass
-
-# KEY
-
-def key():
-    pass
-    
+# The "key" parameter right now is the hint a user gets and may be used later for a decode function.
 # WRITE
 def write(key,phrase):
     f=open("crypto.txt",'a+')
@@ -71,4 +56,3 @@ def write(key,phrase):
     f.write('\n')
     f.close()
 
-# READ

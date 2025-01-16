@@ -9,3 +9,6 @@ Key: ('o', 'b')
 Phrase: mehhhh!!!
 Jumble: qtaaaa!!!
 Key: ('m', 'q')
+Phrase: hello
+Jumble: zqxxu
+Key: ('e', 'q')
