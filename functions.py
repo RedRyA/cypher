@@ -102,7 +102,7 @@ def change(T):
         old = old_entry.get().lower()
         new = new_entry.get().lower()
 
-        if old in codex:
+        if old in mixPhrase:
             codex[old] = new
             for j in range(len(mixPhrase)):
                 if mixPhrase[j] == old:
