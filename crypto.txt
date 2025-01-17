@@ -2,3 +2,12 @@
 Phrase: decode
 Jumble: tldstl
 Key: ('o', 's')
+Phrase: the end is near but don't be afraid
+Jumble: wdo oys hp yoja gew sfy'w go jkajhs
+Key: ('i', 'h')
+Phrase: hello
+Jumble: djhht
+Key: ('o', 't')
+Phrase: djkkl
+Jumble: bopph
+Key: ('d', 'b')
