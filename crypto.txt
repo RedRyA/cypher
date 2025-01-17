@@ -1,1 +1,4 @@
 
+Phrase: decode
+Jumble: tldstl
+Key: ('o', 's')
