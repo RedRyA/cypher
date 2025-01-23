@@ -1,2 +1,9 @@
 
-
+Add text to labels on GUI "Phrase","enter", etc.
+add buttons to encode and decode
+Disable typing on manin window
+Don't show Codex
+Add a restart/clear button
+be able to move and resize both the main and letter change screen (try to combine the two)
+be able to change a previously changed letter
+have new letters on line on top of cypher letters (def do this!!!!)

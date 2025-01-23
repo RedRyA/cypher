@@ -11,3 +11,27 @@ Key: ('o', 't')
 Phrase: djkkl
 Jumble: bopph
 Key: ('d', 'b')
+Phrase: dfdds
+Jumble: egeex
+Key: ('d', 'e')
+Phrase: dfdds
+Jumble: egeex
+Key: ('f', 'g')
+Phrase: dfdds
+Jumble: egeex
+Key: ('f', 'g')
+Phrase: ssss
+Jumble: kkkk
+Key: ('s', 'k')
+Phrase: fdfdf
+Jumble: dtdtd
+Key: ('f', 'd')
+Phrase: hello
+Jumble: wsvvj
+Key: ('h', 'w')
+Phrase: hello
+Jumble: wsvvjevvj
+Key: ('f', 'd')
+Phrase: jfffkkkd
+Jumble: hpppvvvi
+Key: ('j', 'h')

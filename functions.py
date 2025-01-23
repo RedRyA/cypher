@@ -6,7 +6,6 @@ codex = {}
 mixPhrase = []
 decodePhrase = []
 
-
 def tkinter_app():
     root = tk.Tk()
     root.title('Cryptoquip')
@@ -21,14 +20,50 @@ def tkinter_app():
     phrase_entry = tk.Entry(root, width=52)
     phrase_entry.pack(pady=10)
 
-    action_label = tk.Label(root, text="Enter 'encode' or 'decode' below:")
-    action_label.pack()
+    # Create a StringVar for storing the selected radio button value
+    selected = tk.StringVar(value="encode")
 
-    action_entry = tk.Entry(root, width=52)
-    action_entry.pack(pady=10)
+    # Create a "Change Letter" box, initially hidden
+    change_letter_frame = tk.Frame(root)
+    change_label = tk.Label(change_letter_frame, text="Change Letter")
+    change_label.pack(pady=5)
+
+    old_label = tk.Label(change_letter_frame, text="Letter to change:")
+    old_label.pack(pady=5)
+    old_entry = tk.Entry(change_letter_frame)
+    old_entry.pack(pady=5)
+
+    new_label = tk.Label(change_letter_frame, text="Change to:")
+    new_label.pack(pady=5)
+    new_entry = tk.Entry(change_letter_frame)
+    new_entry.pack(pady=5)
+
+    def apply_change():
+        old = old_entry.get().lower()
+        new = new_entry.get().lower()
+
+        if old in mixPhrase:
+            codex[old] = new
+            for j in range(len(mixPhrase)):
+                if mixPhrase[j] == old:
+                    decodePhrase[j] = new
+
+            # Update the Text widget with the new decoded phrase
+            T.delete(1.0, tk.END)
+            T.insert(tk.END, "Original: " + ' '.join(mixPhrase) + "\n")
+            T.insert(tk.END, "New: " + ' '.join(decodePhrase) + "\n")
+        else:
+            T.insert(tk.END, f"Letter '{old}' not found in codex.\n")
+
+    # Button to apply letter change
+    apply_button = tk.Button(change_letter_frame, text="Apply Change", command=apply_change)
+    apply_button.pack(pady=10)
+
+    # Hide change letter section initially
+    change_letter_frame.pack_forget()
 
     def handle_action():
-        action = action_entry.get().lower()
+        action = selected.get()
         phrase = phrase_entry.get().lower()
 
         # Clear the previous output
@@ -39,11 +74,37 @@ def tkinter_app():
         elif action == 'decode':
             decode(phrase, T)
         else:
-            T.insert(tk.END, "Invalid action. Please enter 'encode' or 'decode'.\n")
+            T.insert(tk.END, "Invalid action. Please select 'Encode' or 'Decode'.\n")
+
+        # Show the Change Letter section after pressing Start
+        change_letter_frame.pack(pady=20)
+
+    def restart():
+        # Reset everything (input fields, output, codex, mixPhrase, decodePhrase)
+        phrase_entry.delete(0, tk.END)  # Clear the phrase entry
+        selected.set("encode")  # Reset the radio button to "encode"
+        T.delete(1.0, tk.END)  # Clear the result Text widget
+        change_letter_frame.pack_forget()  # Hide the Change Letter section
+        # Clear the previous encoding/decoding data
+        global codex, mixPhrase, decodePhrase
+        codex = {}
+        mixPhrase = []
+        decodePhrase = []
+
+    # Radio buttons for selecting Encode or Decode
+    encode_radio = tk.Radiobutton(root, text="Encode", value="encode", variable=selected)
+    encode_radio.pack()
+
+    decode_radio = tk.Radiobutton(root, text="Decode", value="decode", variable=selected)
+    decode_radio.pack()
 
     # Button to start encoding or decoding based on user input
     action_button = tk.Button(root, text="Start", command=handle_action)
     action_button.pack()
+
+    # Button to restart the app and clear everything
+    restart_button = tk.Button(root, text="Restart", command=restart)
+    restart_button.pack(pady=10)
 
     # Center window
     screen_width = root.winfo_screenwidth()
@@ -93,47 +154,6 @@ def decode(phrase, T):
     T.insert(tk.END, "Encoded phrase: " + ' '.join(mixPhrase) + "\n")
     T.insert(tk.END, "To decode, enter the substitution for a letter.\n")
     change(T)
-
-
-def change(T):
-    global codex, mixPhrase, decodePhrase
-
-    def apply_change():
-        old = old_entry.get().lower()
-        new = new_entry.get().lower()
-
-        if old in mixPhrase:
-            codex[old] = new
-            for j in range(len(mixPhrase)):
-                if mixPhrase[j] == old:
-                    decodePhrase[j] = new
-
-            # Update the Text widget with the new decoded phrase
-            T.delete(1.0, tk.END)
-            T.insert(tk.END, "Updated Codex: " + str(codex) + "\n")
-            T.insert(tk.END, "Original: " + ' '.join(mixPhrase) + "\n")
-            T.insert(tk.END, "New: " + ' '.join(decodePhrase) + "\n")
-        else:
-            T.insert(tk.END, f"Letter '{old}' not found in codex.\n")
-
-    # Create an interface to change letters in the Tkinter window
-    change_window = tk.Toplevel()
-    change_window.title("Change Letters")
-
-    old_label = tk.Label(change_window, text="Letter to change:")
-    old_label.pack(pady=5)
-    old_entry = tk.Entry(change_window)
-    old_entry.pack(pady=5)
-
-    new_label = tk.Label(change_window, text="Change to:")
-    new_label.pack(pady=5)
-    new_entry = tk.Entry(change_window)
-    new_entry.pack(pady=5)
-
-    apply_button = tk.Button(change_window, text="Apply Change", command=apply_change)
-    apply_button.pack(pady=10)
-
-    change_window.mainloop()
 
 
 # The "key" parameter right now is the hint a user gets and may be used later for a decode function.
